@@ -32,10 +32,51 @@ public:
       Node<T> * node = new Node<T>(element);
       first = node;
       last = node;
-    } else {
+    }
+    else {
       Node<T> * node = new Node<T>(element);
       node->next = first;
       first = node;
+    }
+  }
+  void pushLast (T element){
+    if ((first == NULL)){
+      Node<T> * node = new Node<T>(element);
+      first = node;
+      last = node;
+    }
+    else{
+        Node<T> * node = new Node<T>(element);
+        last->next = node;
+        last = node;
+    }
+  }
+  void deleteFirst(){
+    if (first == last){
+      delete first;
+      first = NULL;
+      last = NULL;
+    }
+    else{
+      Node<T> * temp = first;
+      first = first->next;
+      delete temp;
+    }
+  }
+  void deleteLast(){
+    if (first == last){
+      delete first;
+      first = NULL;
+      last = NULL;
+    }
+    else{
+      Node<T> * temp = first;
+      while (temp->next != last){
+        temp = temp->next;
+      }
+      delete last;
+      last = temp;
+      last->next = NULL;
     }
   }
   void print(){
